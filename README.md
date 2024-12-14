@@ -17,7 +17,7 @@ Mostly using c++, now working on c++ language familiarizing
 
 1_Recursion (not yet)
 2_Time_Complexity (not yet)
-  1_Time_Complextiry (not yet)
+  1_Time_Complexity (not yet)
   2_Big_O (not yet)
   3_Space_Complexity (not yet)
   4_Prefix_sum (not yet)
