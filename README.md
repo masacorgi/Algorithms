@@ -6,7 +6,7 @@ Mostly using c++, now working on c++ language familiarizing
 ### Directories
 
 0_Basic_C++   
-&emsp;[0_Base&InputOutput](https://github.com/masacorgi/Algorithms/blob/main/0_Basic_C%2B%2B/0_Base_%26_Input_Output.md)   
+&emsp;[0_Base&InputOutput](./0_Basic_C++/0_Base_&_Input_Output.md)   
 &emsp;[1_Types](./0_Basic_C++/1_Types.md)   
 &emsp;2_Memory&Pointer (not yet)   
 &emsp;3_Method (not yet)   
