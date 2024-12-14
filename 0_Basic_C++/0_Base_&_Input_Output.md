@@ -1,4 +1,4 @@
-# Basic C++
+# Basic C++, Input & Output
 기본과 입력 출력
 ## 기본
 ### Header, namespace
@@ -14,6 +14,27 @@ cout << a << "\n";// 변수 a 출력. 출력함수로는 cout, printf 있음
 return 0; // main함수 종료. cpp 파일 하나당 하나의 main 함수 필요
 }
 
+```
+```
+<bits/stdc++.h>는 거의 모든 c++ 표준 라이브러리 헤더파일을 포함한다.
+iostream, vector, string, algorithm, map, set, cmath, queue, stack, functional, unordered_map, unordered_set 등등.. 과 일부 GCC 컴파일러 전용 내부 유틸리티도 포함함
+
+주로 알고리즘 코딩때 사용됨. 여러 헤더를 따로 쓰기에 너무 많기 때문에 한방에 집어넣는 것..
+
+다만 컴파일러가 모든 헤더 파일을 분석해야하므로 컴파일 시간이 길다.
+GCC 전용 헤더파일이기 때문에 다른 컴파일러(MSVC, Clang)에서는 사용할 수 없다.
+
+표준 c++ 헤더가 아니기때문에 제품 프로젝트나 장기적인 코드 작성에는 적합하지 않다.
+
+경쟁 프로그래밍(알고리즘 테스트, 경연)에서 속도를 줄이기 위해 사용하는 것이 좋다.
+```
+```
+Namespace를 통해 중복되는 이름을 묶어서 관리하고 사용할 수 있다.(논리적으로 그룹화)
+namespace 안에 이름들을 넣고, 사용할 땐 제목::내용물 이렇게 꺼내씀
+
+다만 파일에서 많이 사용하는 namespace의 경우는 usingnamespace에 기재하면 이후 :: 앞에 적어서 꺼내쓸 필요 없이 쓸 수 있다.
+
+::은 네임스페이스 안의 내용물이나 클래스 안에 정의된 멤버(변수, 함수)등에 접근할 때 쓰임. java의 .이랑 유사한듯
 ```
 
 ### typedef
