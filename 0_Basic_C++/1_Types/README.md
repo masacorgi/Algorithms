@@ -1,12 +1,25 @@
 # Basic C++, Types
 
-## 타입
+index   
+1. char
+2. string
+3. bool
+4. int
+5. double
+6. unsigned long long
+7. pair & tuple
+8. auto
+9. 타입 변환
+   
+<br>
+<br>
+<br>
 변수든 메소드든 항상 사용되는 코드 이전에 선언되어있어야 한다.
 
 인자만 선언해놓고 아래쪽에 정의하는 방식도 사용가능   
 하지만 알고리즘 코딩은 시간싸움이므로 한방에 선언과 정의를 하는것이 좋다.   
 
-## char
+## 1. char
 ```
 char : 'a', 1바이트
     char a = NULL;
@@ -15,7 +28,7 @@ char : 'a', 1바이트
     모두 널 문자로 초기화한다. 널은 문자열의 끝을 가리키는 문자이며, 아스키값이 0이기 때문에 숫자 0으로 문자변수를 초기화해도 널문자로 변환된다. 
     정의 없이 선언만 해도 문자변수는 널문자로 초기화된다.
 ```
-## string 
+## 2. string 
 string : char를 char[ ] 배열로 선언하거나 그냥 string으로 선언해 문자모음, 즉 문자열을 선언.   
    
 char s[10];   
@@ -26,8 +39,9 @@ a[0], a[1] 과 같이 한자리씩 사용도 가능하나, 한글자당 1바이�
 string a = "류현진";   
 cout << a[0] << a[1] << a[2]; //'류' 출력됨
 ```
+<br>
 
-**자주사용되는 string 메소드들**
+### 자주사용되는 string 메소드들
 ```
 push_back() : 맨뒤에 글자 하나 추가. 하나 추가기때문에 보통 += 써서 문자열을 더한다.
 ex) stringvalue.push_back('K');
@@ -63,6 +77,7 @@ substr(위치,크기) : 지정한 위치에서 크기만큼의 문자열 추출,
 s1 += s2; // fast. 기존 문자열에 추가해서 확장
 s1 = s1 + s2 // slow. 새로운 문자열을 만들어 재할당하는 방식
 ```
+<br>
 
 ### ASCII 
 문자를 정수처럼 대하여 + - 시키면 아스키코드값에 적용해 반응한다.   
@@ -71,13 +86,13 @@ char a = 'a';
 int n = (int)a; // char -> int 형변환
 
 ```
+<br>
 
 ### reverse()
 string은 뒤집는 메서드를 지원하지 않는다. 뒤집으려면 STL이 지원하는 reverse()를 쓰면됨   
    
-void reverse( BidirectionalIterator first, BidirectionalIterator last);
-문자열 시작 이터레이터, 끝 이터레이터를 받아서   
-아무것도 반환하지 않고 원본 문자열을 바꿔버림   
+void reverse( BidirectionalIterator first, BidirectionalIterator last);   
+문자열 시작 이터레이터, 끝 이터레이터를 받아서 아무것도 반환하지 않고 원본 문자열을 바꿔버림   
    
 ```c++
 string a = "abcdef";
@@ -85,6 +100,7 @@ reverse(a.begin(), a.end()); // fedcba
 reverse(a,begin(), a.end()); // abcdef
 reverse(a.begin()+3, a.end()); // abfced
 ```
+<br>
 
 ### split  (중요!!)
 C++은 STL에서 split() 함수를 지원하지 않기때문에 **만들어서 써야한다.**
@@ -112,7 +128,8 @@ vector<string> split(const string& input, string delimiter){
 ```
    
 split(문자열, 구분자)로 사용할 수 있음   
-   
+   <br>
+
 ### 범위기반 for 루프, Range_based_for_loop
 C++ 11부터 범위기반 for문을 쓸 수 있다.
 for( int element : elements ){ cout << element; }   
@@ -123,6 +140,8 @@ range based for는 런타임 시기가 아닌 그전 컴파일 단계때 크기�
    
 런타임 시에 크기를 변경되는 코딩을 하고 싶다면 array 대신 배열을 사용해야됨   
 굳이 Array를 쓰고 싶다면 전역변수로 크기를 고정해 선언하고 사용하면 됨..
+
+<br>
 
 ### atoi(s.c_str)
 
@@ -136,11 +155,23 @@ string s2 = "10";
 cout << atoi(s.c_str()); // 0
 cout << atoi(s2.c_str()); // 10
 ```
+<br>
 
 ### stoi(string s)
 string으로 된 숫자를 int로 변환하고 싶다면 stoi를 사용하면 되지만   
 stoi는 숫자가 아닐때 0을 반환하지 않고 에러를 발생시킨다.
+```c++
+string s = "10";
+cout << atoi(s.c_str()); // 10
+```
+<br>
 
-## bool
-
+## 3. bool
+54p
+## 4. int
+## 5. double
+## 6. unsigned long long
+## 7. pair & tuple
+## 8. auto
+## 9. 타입 변환
 54p
