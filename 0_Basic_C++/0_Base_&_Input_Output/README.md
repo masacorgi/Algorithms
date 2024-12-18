@@ -1,6 +1,15 @@
 # Basic C++, Input & Output
-기본과 입력 출력
-## 기본
+
+<br>
+
+index
+1. Base 기본
+2. Input 입력
+3. Output 출력
+
+<br>
+
+## 1. Base 기본
 ### Header, namespace
 
 ```c++
@@ -94,8 +103,10 @@ c++이 제공하는 standard template library. 자료구조, 함수등 제공.
 * 펑터 : 함수 호출 연산자를 오버로드하는 클래스의 인스턴스
 
 ```
-## 입력 출력
-### 입력
+
+<br>
+
+## 2. Input 입력
 
 cin과 scanf가 있음.   
 문제에서 형식을 기반으로 입력이 주어지지 않은 경우 scanf보다 cin 을 쓰는것이 좋음.   
@@ -138,7 +149,9 @@ cin을 쓰고 getline을 쓰면 cin이 남긴 엔터를 getline이 보고 읽을
 %s : 문자열 string
 ```
 
-## 출력
+<br>
+
+## 3. Output 출력
 ```
 cout << a << ' ' << b << " "<< '\n';
 
