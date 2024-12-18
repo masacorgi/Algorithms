@@ -1,12 +1,13 @@
 # Basic C++, Types
+여러 자료형과 pair, tuple 그리고 형변환을 공부한 자료 정리입니다.   
 
 index   
 1. char
 2. string
 3. bool
 4. int
-5. double
-6. unsigned long long
+5. long long
+6. double
 7. pair & tuple
 8. auto
 9. 타입 변환
@@ -167,11 +168,145 @@ cout << atoi(s.c_str()); // 10
 <br>
 
 ## 3. bool
-54p
+true/false, 1/0으로 선언 가능   
+c++ 에서는 bool(3) == 1로 0이 아닌 값(string 제외)은 모두 1이 나오게 사용할 수 있다.   
+
+<br>
+
 ## 4. int
-## 5. double
-## 6. unsigned long long
+4바이트 정수. -2147483648 ~ 2147483647, 약 -20억부터 20억   
+문제풀이에 20억 이상의 숫자가 필요하다면 int가 아닌 long long을 사용해야함.   
+
+문제 풀이에서 대부분 int의 최댓값을 사용할 때 987654321 아니면 1e9을 사용함
+(1e9은 exponential notation으로 표현된 숫자로 1x10^9, 즉 10억)   
+INF + INF or INF + 다른 수 연산으로 int 최댓값 오버플로우를 방지하기 위함..
+```c++
+const int INF = 987654321; // INF는 infinity의 약자. 무한대는 아니지만 최댓값 규정에 사용
+const int INF2 = 1e9;
+// const 는 선언 후 수정이 불가능한 '상수' 변수 선언에 사용
+```
+
+int / int 연산에서 발생하는 소숫점 아래는 모두 버려짐.   
+int / double 연산 시는 자동으로 double로 형변환됨
+
+### Overflow, Underflow
+타입의 허용범위를 넘어갈때 발생하는 에러.   
+int 의 경우 2147483647을 넘어가는 숫자는 최솟값(-2147483648) + 넘어간 숫자로 오버플로우가,   
+-2147483648 보다 작은 숫자는 최댓값(2147483647) - 넘어간 숫자로 언더플로우가 발생한다.   
+
+<br>
+
+## 5. long long
+4바이트 int보다 범위가 큰 8바이트 정수(–9,223,372,036,854,775,808 ~ 9,223,372,036,854,775,807)   
++-9000 * 1000조   
+   
+문제 범위가 int의 최댓값을 20억을 넘긴다면 long long을 사용해야됨.
+```c++
+//int와 비슷하게 INF를 정의하고 쓰는게 좋다.
+const long long = 1e18;
+```
+
+### unsigned long long
+8바이트 양의 정수. 음수 표현을 포기하고 그만큼을 양의정수 범위로 늘린 자료형.  
+0 ~ 18,446,744,073,709,551,615
+
+<br>
+
+## 5. double, float
+### double
+8바이트 실수. 소수점 아래 15자리까지 표현 가능
+### float
+4바이트 실수. 소수점 아래 7자리까지 표현 가능
+
+double이 더 정확한 계산이 가능하니 실수 연산에는 double을 쓰는것이 좋다.
+
+<br>
+
 ## 7. pair & tuple
+pair, tuple 모두 타입이나 자료구조가 아니라 c++ 제공 utility 라이브러리의 템플릿 클래스이며 자주 사용된다.   
+   
+pair 두가지 값을 담을 때 사용.   
+tuple 세가지 값을 담을 때 사용.   
+
+```c++
+pair<int, int> p1 = {1,2};
+pair<int, int> p2 = make_pair(1,2);
+tupe<int, int, int> t = make_tuple(1,2,3);
+
+int a,b;
+a = p1.first;
+b = p1.second;
+tie(a,b) = p1; // 위 두줄과 같은 동작
+
+int a,b,c;
+a = get<0>(t);
+b = get<1>(t);
+c = get<2>(t);
+tie(a,b,c) = t; // 위 세줄과 같은 동작
+```
+get<>..로 꺼내기 불편하기 때문에 세가지 이상의 멤벼변수가 필요하면 tuple보단 struct를 쓰는것도 좋다.
+
+<br>
+
 ## 8. auto
+auto는 타입 추론으로 자동 결정되는 자료형.
+```c++
+vector<pair<int, int>> v = {{1, 1}, {2, 2}, {3,3}};
+
+for(pair<int, int> it : v){
+        cout << it.first << " : " << it.second << endl; 
+}
+	
+for(auto it : v){ // vector v의 내용물을 보고 자동으로 pair<int,int>로 설정해줌. 
+	cout << it.first << " : " << it.second << endl;
+}
+```
+
+<br>
+
 ## 9. 타입 변환
-54p
+
+```c++
+(바꿀 타입)대상변수
+double d = 1.234;
+int n = (int)double_value;
+// 형변환 연산자는 바로 뒤에 오는 단일 값만을 변환하므로 순서에 유의하거나 괄호로 범위를 묶어서 알려줘야한다.
+```
+   
+int를 double로 나누면 더 큰 자료형인 double로 결과 값이 나오지만, 코딩테스트에서 이를 신경쓰기 쉽지 않기때문에 처음부터 같은 자료형으로 계산 하는 것이 틀리지 않을 확률을 높여준다.
+   
+자료형이 다른 숫자끼리 계산할 때, 형변환을 사용하지 않으면 자동으로 형변환 해주는데, 다음과 같은 순서대로 형변환이 일어난다.
+```
+int -> unsigned int -> long -> unsigned long -> long long -> unsigned long long -> float -> double -> long double
+```
+   
+vector의 .size() 등 음수가 나올 수 있는 연산에 주의가 필요하다.   
+size()는 unsigned int를 반환하므로 크기보다 작은 수가 나오는 연산을 수행하면 언더플로우가 발생해 엄청 큰 양수가 나옴..   
+(int)로의 형변환이 필요함.   
+```c++
+vector<int> a = {1,2,3};
+
+cout << a.size - 10 << endl; // a.size()는 unsigned int, 언더플로우 발생
+cout << (int) a.size - 10 << endl; // -7 정상출력
+```
+   
+또 아스키 코드를 사용해 문자를 숫자로, 숫자를 문자로 표현해낼 수 있다.   
+'a' 는 아스키값이 97이고 하나씩 증가해 'z'는 122이다.   
+```c++
+char = 'a';
+cout << (int)a - 97; // 0
+cout << (int)a - 'a' // 0
+cout << (int)'z' - 97 // 25
+```
+
+같은 방식으로 문자열로 이루어진 숫자도 분리해 저장할 수 있다.
+```c++
+string s = "123456";
+	
+vector<int> digits;
+	
+for(int i=0; i<s.length(); i++){
+	digits.push_back( (int)s[i] - '0' ); //'0' 아스키값은 32이므로 32를 빼면 진짜 숫자 가 됨
+}
+```
+
