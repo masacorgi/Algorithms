@@ -8,7 +8,7 @@ Mostly using c++, now working on c++ language familiarizing
 [0_Basic_C++](./0_Basic_C++/)   
 &emsp;[0_Base&InputOutput](./0_Basic_C++/0_Base_&_Input_Output/)   
 &emsp;[1_Types](./0_Basic_C++/1_Types/)   
-&emsp;2_Memory&Pointer (not yet)   
+&emsp;[2_Memory&Pointer](2_Memory_&_Pointer)   
 &emsp;3_Method (not yet)   
 &emsp;4_Datastructures (not yet)   
 &emsp;5_Array_Modifying (not yet)   
