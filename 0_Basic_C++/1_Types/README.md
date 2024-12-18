@@ -10,7 +10,7 @@ index
 6. double
 7. pair & tuple
 8. auto
-9. 타입 변환
+9. type casting
    
 <br>
 <br>
@@ -212,7 +212,7 @@ const long long = 1e18;
 
 <br>
 
-## 5. double, float
+## 6. double, float
 ### double
 8바이트 실수. 소수점 아래 15자리까지 표현 가능
 ### float
@@ -264,7 +264,7 @@ for(auto it : v){ // vector v의 내용물을 보고 자동으로 pair<int,int>�
 
 <br>
 
-## 9. 타입 변환
+## 9. type casting, 형변환
 
 ```c++
 (바꿀 타입)대상변수
