@@ -20,9 +20,14 @@
 &emsp;&emsp;8. auto   
 &emsp;&emsp;9. type casting   
 &emsp;[2_Memory&Pointer](./2_Memory_&_Pointer/)   
-&emsp;&emsp; 현재   
-&emsp;&emsp; 진행중...   
-&emsp;3_Method (not yet)   
+&emsp;&emsp;1. Memory   
+&emsp;&emsp;2. Pointer   
+&emsp;&emsp;3. Dereference Operator *, 역참조 연산자   
+&emsp;&emsp;4. Array to Pointer Decay   
+&emsp;&emsp;5. 프로세스 메모리 구조와 정적/동적할당   
+&emsp;&emsp;6. Iterator   
+&emsp;[3_Method](./3_Method)   
+&emsp;&emsp; 현재 진 행 중 ...   
 &emsp;4_Datastructures (not yet)   
 &emsp;5_Array_Modifying (not yet)   
 &emsp;6_Recursion_Math (not yet)   
