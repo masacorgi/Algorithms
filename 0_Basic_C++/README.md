@@ -26,7 +26,7 @@
 &emsp;&emsp;4. Array to Pointer Decay   
 &emsp;&emsp;5. 프로세스 메모리 구조와 정적/동적할당   
 &emsp;&emsp;6. Iterator   
-&emsp;[3_Method](./3_Method)   
+&emsp;[3_Method](./3_Methods)   
 &emsp;&emsp; 현재 진 행 중 ...   
 &emsp;4_Datastructures (not yet)   
 &emsp;5_Array_Modifying (not yet)   
