@@ -1,4 +1,4 @@
-# Basic C++, Method
+# Basic C++, Methods
 
 알고리즘 풀이에 사용되는 다양한 C++의 함수를 공부하고 정리한 자료입니다.   
 
