@@ -84,20 +84,132 @@ int v[3] = {1,2,3};
 int ret;
 ret = memcpy(ret, v, sizeof(v));
 ```
-### copy( ) - 깊은복사 - Array, Vector
+   
+memcpy()로 복사할 대상이 겹치거나, 단순 복사 가능하지 않은 경우를 Trivially Copyable이라고 하며, 이때 memcpy()는 제대로 동작하지 않는다.
+is_trivial() 함수로 이를 체크할 수 있다.
+```c++
+if(is_trivial<vector<int>>()){
+    cout << "trivially copyable!! no can do" << endl;
+    // vector는 사용할 수 없다. trivaially copyable
+    // memcpy()는 array에만 쓸 수 있다.
+}
+```
 
+#### memcpy( ) 사용 시 주의할 점
+memcpy()를 쓸 때 복사하는 배열(src)과 복사되는 대상(dest) 배열의 메모리가 겹치면 UB 에러가 발생한다.   
+```c++
+int a[8];
+memcpy(&a[1], a, sizeof(int) * 7); // 같은 배열에 복사를 선언. UB 에러 발생!!
+```
+
+### copy( ) - 깊은복사 - Array, Vector
+memcpy()와 같은 동작을 Array, Vector 모두에 수행가능한 함수
+```c++
+copy(InputIterator first, InputIterator last, OutputIterator result);
+//copy(복사할 배열/벡터 시작메모리, 복사할 배열/벡터 끝 메모리+1, 복사해넣을 장소 시작메모리)
+copy(v.begin(), v.end(), ret.begin());
+```
+input vector과 output vector의 크기를 동일하게 맞추고 집어넣어야 하는 것이 중요하다.   
+   
+배열의 크기는 컴파일 시간에 상수여야 하므로 const int로 선언 후 배열 선언을 하는 것이 옳다. 그렇지 않을 경우 모든 C++ 컴파일러에서 제대로 컴파일 되지 않을 수 있음.
 
 <br>
 
 ## 3. sort( )
+배열 등 컨테이너들의 요소를 정렬하는 함수. O(logn)의 시간복잡도.   
+```c++
+sort(first, last, *커스텀비교함수(선택));
+//sort(정렬하고 싶은 배열/컨테이너의 첫번째 이터레이터, 정렬하고 싶은 배열의 마지막 이터레이터, 커스텀 비교함수) 
+```
+[fist,last)의 범위. 마지막은 포함하지 않는다는 뜻.   
+커스텀 비교함수는 넣지 않으면 오름차순으로 정렬함.   
+less<타입>() 으로 오름차순,   
+greater<타입>() 으로 내림차순으로 변경
+
+```c++
+int v[3] = {3,2,1};
+sort(v.begin(), v.end()); // 3,2,1 -> 1,2,3
+sort(v.begin(), v.end(), greater<int>()) // 1,2,3 -> 3,2,1
+```
+
+### 커스텀 비교함수 만들기 CMP
+pair로 이루어진 벡터의 경우 기본으로 first, second 순으로 오름차순 정렬되지만   
+first를 내림차순, second를 오름차순으로 정렬하고 싶다면? cmp를 만들어 투입하면 된다.
+```c++
+vector<pair<int,int>> v;
+
+bool cmp(pair<int,int> a, pair<int, int> b){
+	return a.first > b.first;
+}
+
+int main(){
+	for( int i=10; i>=1; i--) v.push_back({i,10-i});
+	
+	sort(v.begin(), v.end(), cmp);
+	
+	for(auto it:v) cout << it.first << " : " << it.second << endl;
+	
+	return 0;
+}
+```
+   
+cmp를 통해 sort()가 a,b에 들어가는 수가 cmp에서 true가 나오는지를 확인하는 과정을 통해 정렬한다는 것을 알 수 있다.
+   
 
 <br>
 
 ## 4. stable_sort( )
+sort()와 사용법은 같다.
+```c++
+stable(v.begin(), v.end(), cmp);
+```
+sort()는 불안정 정렬 알고리즘을 사용한다. 같은 값을 가진 요소들의 들어온 순서를 보장하지 않는다.   
+stable_sort()는 안정 정렬 알고리즘을 사용한다. 같은 값을 가진 요소들은 들어온 순서를 보존해 지켜준다.
 
 <br>
 
 ## 5. unique( )
+범위 안의 요소를 앞에서부터 두개씩 서로 비교하여 중복되는 요소를 삭제하는 함수. O(n)의 시간복잡도.   
+```c++
+iterator unique(v.begin(), v.end());
+```
+중복되는 요소를 삭제하고 마지막 요소의 다음 주소, 즉 새로운 끝을 반환한다.
+```c++
+for(int i=1; i<=5; i++){
+	v.push_back(i);
+	v.push_back(i);
+}
+for(int i : v) cout << i << ' ';
+cout << endl;
+	
+auto it = unique(v.begin(), v.end());
+cout << it - v.begin() << endl; // 새로운 끝 - 시작 : 즉 남은 요소의 수
+	
+for(int i : v) cout << i << ' ';
+cout << endl;
+return 0;
+```
+중복되는 요소를 제거하고 앞에서부터 새로 채워넣지만 남은 요소는 건드리지 않기에 제거된 요소 수만큼의 양이 뒤에 그대로 남게된다.   
+   
+sort()와 erase()와 같이 사용해서 중복되지 않은 요소만 남게 해야한다.
+```c++
+// erase()
+vector<int> v = {1, 2, 3, 4, 5};
+v.erase(v.begin() + 1, v.begin() + 4);  // 인덱스 1부터 3까지 삭제
+// v == {1,5}
+```
+
+### erase()와 unique() 조합
+unique는 중복된 연속 요소를 제거하고 새로운 끝의 이터레이터를 반환함.
+erase는 주어진 처음, 끝 이터레이터를 모두 포함한 범위를 지움
+
+```c++
+vector<int> v = {1, 2, 2, 3, 3, 4};
+v.erase( unique(v.begin(), v.end()),  v.end());
+```
+
+### sort()와 unique() 조합
+uinque()는 중복된 연속 요소만 제거하므로 정렬후 사용해야 합니다 ,, ,,
 
 <br>
 
