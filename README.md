@@ -10,7 +10,7 @@ Mostly using c++, now working on c++ language familiarizing
 &emsp;[1_Types](./0_Basic_C++/1_Types/)   
 &emsp;[2_Memory&Pointer](./0_Basic_C++/2_Memory_&_Pointer)   
 &emsp;[3_Methods](./0_Basic_C++/3_Methods)   
-&emsp;4_Datastructures (not yet)   
+&emsp;[4_Datastructures](./0_Basic_C++/4_Datastructures)   
 &emsp;5_Array_Modifying (not yet)   
 &emsp;6_Recursion_Math (not yet)   
 
