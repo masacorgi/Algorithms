@@ -214,21 +214,88 @@ uinque()는 중복된 연속 요소만 제거하므로 정렬후 사용해야 �
 <br>
 
 ## 6. lower_bound( ), upper_bound( )
+정렬된 배열에서 어떤 값이 나오는 첫번째 지점 또는 초과하는 지점의 위치를 찾으려면? 또는 이분탐색을 쉽게 함수로 구현하려면?   
+즉, 어떤 값을 기준으로 배열을 나누려면?   
 
+```c++
+vector<int> a {1,2,3,3,3,4};	
+cout << lower_bound(a.begin(), a.end(), 3) - a.begin() << endl; //2 (배열의 [2]번째 값)
+cout << upper_bound(a.begin(), a.end(), 3) - a.begin() << endl; //5 (배열의 [5]번째 값)
+```
+꼭 정렬이 완료된 배열에서 사용해야 한다.   
+
+lower_bound()는 기준값 이상(>=)인 첫번째 위치를 반환.   
+upper_bound()는 기준값 초과(>)인 첫번째 위치를 반환한다.   
+   
+더 자세하게 말하면 lower_bound(), upper_bound()는 주어진 기준값의 시작'이터레이터', upper는 기준값 다음값의 시작 '이터레이터'를 반환한다. O(logn)의 시간복잡도를 가진다.   
+   
+때문에 .begin()으로 배열의 시작점을 빼주어야(주소값 끼리 빼기) 몇번째 값인지를 알아내 사용할 수 있다.
+![alt text](lower_upper_bound.png)   
+lower_bound는 기준값의 시작주소, 즉 기준값보다 작은 값의 마지막주소+1,   
+upper_bound는 기준값의 마지막주소+1, 즉 기준값보다 큰 값의 시작주소를 반환하므로 다음과 같이 값만 꺼내 쓸수도 있다.   
+```c++
+vector<int> a {1,2,3,3,4,100};
+cout << *(lower_bound(a.begin(), a.end(), 4)-1) << endl; //3
+cout << *upper_bound(a.begin(), a.end(), 4) << endl; //100
+```
+   
+lower과 upper를 응용해서 같은 값이 몇개인지를 알아낼 수도 있다.
+```c++
+vector<int> a {1,2,3,3,3,3,4,100};
+cout << upper_bound(a.begin(), a.end(), 3) - lower_bound(a.begin(), a.end(), 3) << endl; //4
+```
+   
+다만 기준값으로 넣은 값이 배열/벡터 내에 없을 경우 lower, upper bound모두   
+기준값보다 큰 값이 있으면 해당 값의 위치를 반환한다.   
+기준값보다 큰 값이 없으면 배열/벡터의 끝 위치를 반환한다.   
+   
 <br>
 
 ## 7. accumulate( )
-
+배열의 합을 쉽고 빠르게 구해주는 함수   
+```c++
+vector<int> v = {1,2,3,4,5,6,7,8,9,10};
+int sum = accumulate(v.begin(), v.end(), 10);
+// accumulate(배열/벡터 시작, 배열/벡터 끝, 추가할 수)
+cout << sum << endl;
+```
 <br>
 
 ## 8. max_element( )
-
+배열 중 가장 큰 요소를 추출하는 함수   
+이터레이터를 반환하므로 *를 통해 값을 끄집어내거나 이를 기반으로 최댓값의 인덱스를 뽑아낼 수 있다.
+```c++
+vector<int> v = {1,2,3,4,5,6,7,8,9,10};
+	
+int max = *max_element(v.begin(), v.end());
+auto max_it = max_element(v.begin(),v.end());
+	
+cout << max << endl;
+cout << (int)(max_it - v.begin()) << endl; // 몇번째 인덱스인지 
+```
 <br>
 
 ## 9. min_element( )
-
+배열 중 가장 작은 요소를 추출하는 함수   
+max와 사용법이 같다.
+```c++
+vector<int> v = {1,2,3,4,5,6,7,8,9,10};
+	
+int min = *min_element(v.begin(), v.end());
+auto min_it = min_element(v.begin(),v.end());
+	
+cout << min << endl;
+cout << (int)(min_it - v.begin()) << endl; // 몇번째 인덱스인지 
+```
 <br>
 
 ## 10. 메모리 주소끼리의 뺄셈
+```c++
+auto it = lower_bound(a.begin(), a.end(), 3);
+cout << it - a.begin() << endl;
+```
+이 코드는 it이터레이터와 a.begin() 사이의 인덱스 차이값을 출력한다.   
+
+C++에서 포인터나 이터레이터의 뺄셈 연산은 메모리 주소차이를 바이트 단위가 아닌 요소의 인덱스 차이로 반환하기 때문임
 
 <br>
