@@ -6,11 +6,11 @@ Mostly using c++, now working on c++ language familiarizing
 ### Directories
 
 [0_Basic_C++](./0_Basic_C++/)   
-&emsp;[0_Base&InputOutput](./0_Basic_C++/0_Base_&_Input_Output/)   
+&emsp;[0_Base & InputOutput](./0_Basic_C++/0_Base_&_Input_Output/)   
 &emsp;[1_Types](./0_Basic_C++/1_Types/)   
-&emsp;[2_Memory&Pointer](./0_Basic_C++/2_Memory_&_Pointer)   
+&emsp;[2_Memory & Pointer](./0_Basic_C++/2_Memory_&_Pointer)   
 &emsp;[3_Methods](./0_Basic_C++/3_Methods)   
-&emsp;[4_Datastructures](./0_Basic_C++/4_Datastructures)   
+&emsp;[4_Data Structures](./0_Basic_C++/4_Data_Structures)   
 &emsp;5_Array_Modifying (not yet)   
 &emsp;6_Recursion_Math (not yet)   
 
