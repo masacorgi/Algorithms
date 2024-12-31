@@ -6,7 +6,7 @@
 
 index   
 1. fil( ), memset( )
-2. memcopy( ), copy( )
+2. memcpy( ), copy( )
 3. sort( )
 4. stable_sort( )
 5. unique( )
@@ -63,7 +63,7 @@ int a[10] = {0, };
 
 <br>
 
-## 2. memcopy( ), copy( )
+## 2. memcpy( ), copy( )
 
 ### Shallow Clone & Deep Clone
 어떤 변수를 복사할 때 Shallow Clone(얕은 복사)를 하면 메모리 주소값만을 복사하고, Deep Clone(깊은 복사)를 하면 새로운 메모리 공간을 할당하고 값을 복사해 하나 더 생성한다.(주소값도 새로 생긴다.)   
