@@ -5,17 +5,31 @@
 <br>
 
 index   
-1. fil( ), memset( )
-2. memcpy( ), copy( )
-3. sort( )
-4. stable_sort( )
-5. unique( )
-6. lower_bound( ), upper_bound( )
-7. accumulate( )
-8. max_element( )
-9. min_element( )
-10. 메모리 주소끼리의 뺄셈
-11. 값에 의한 호출, 참조에 의한 호출
+- [Basic C++, Methods](#basic-c-methods)
+	- [1. fill( ), memset( )](#1-fill--memset-)
+		- [1.1 fil( )](#11-fil-)
+		- [1.2 memset( )](#12-memset-)
+		- [1.3 {, }](#13--)
+	- [2. memcpy( ), copy( )](#2-memcpy--copy-)
+		- [2.1 Shallow Clone \& Deep Clone](#21-shallow-clone--deep-clone)
+		- [2.2 memcpy( ) - 깊은복사 - Array](#22-memcpy----깊은복사---array)
+		- [2.3 copy( ) - 깊은복사 - Array, Vector](#23-copy----깊은복사---array-vector)
+	- [3. sort( )](#3-sort-)
+		- [3.1 커스텀 비교함수 만들기 CMP](#31-커스텀-비교함수-만들기-cmp)
+	- [4. stable\_sort( )](#4-stable_sort-)
+	- [5. unique( )](#5-unique-)
+		- [5.1 erase()와 unique() 조합](#51-erase와-unique-조합)
+		- [5.2 sort()와 unique() 조합](#52-sort와-unique-조합)
+	- [6. lower\_bound( ), upper\_bound( )](#6-lower_bound--upper_bound-)
+	- [7. accumulate( )](#7-accumulate-)
+	- [8. max\_element( )](#8-max_element-)
+	- [9. min\_element( )](#9-min_element-)
+	- [10. 메모리 주소끼리의 뺄셈](#10-메모리-주소끼리의-뺄셈)
+	- [11. 값에 의한 호출, 참조에 의한 호출](#11-값에-의한-호출-참조에-의한-호출)
+		- [11.1 매개변수](#111-매개변수)
+		- [11.2 값에 의한 호출, Call by value](#112-값에-의한-호출-call-by-value)
+		- [11.3 참조에 의한 호출, Call by Reference](#113-참조에-의한-호출-call-by-reference)
+		- [11.4 Call by Reference로 넘겨야 하는 경우](#114-call-by-reference로-넘겨야-하는-경우)
 
 <br>
 <br>
@@ -26,7 +40,7 @@ index
 fill()은 모든 값으로 초기화할 수 있다.   
 memset()은 -1, 0으로만 초기화할 수 있음.   
 fill()이 더 편하지만 -1,0의 경우 memset이 더 빠르기 때문에 memset을 쓰는게 좋음.
-### fil( )
+### 1.1 fil( )
 O(n)의 시간복잡도를 가짐.   
 ```c++
 void fill(ForwardIterator first, ForwardIterator last, const T& val); 
@@ -40,8 +54,9 @@ fill(a, a+10, 200); // 1차원 배열의 경우 배열이름 + 숫자로 사용�
 fill(&b[0][0], &b[0][0] + 10*10, 7); // 2차원은 이름+숫자 못씀.. 주소+숫자는 가능하다.
 fill(&b[0][0], &b[9][10], 6);
 ```
-   
-### memset( )
+<br>
+
+### 1.2 memset( )
 memset()은 바이트 단위로 초기화하며, 0, -1, char형 1문자로 초기화할때만 사용함.
 
 ```c++
@@ -54,8 +69,9 @@ memset(a1, -1, sizeof(a1)); // 배열이름, 채울값, 배열크기
 memset(a2, 0, sizeof(a2));
 memset(a, 'K', sizeof(a)); // 문자로도 된다.
 ```
+<br>
 
-### {, }
+### 1.3 {, }
 ```c++
 int a[10] = {0, };
 ```
@@ -65,16 +81,17 @@ int a[10] = {0, };
 
 ## 2. memcpy( ), copy( )
 
-### Shallow Clone & Deep Clone
+### 2.1 Shallow Clone & Deep Clone
 어떤 변수를 복사할 때 Shallow Clone(얕은 복사)를 하면 메모리 주소값만을 복사하고, Deep Clone(깊은 복사)를 하면 새로운 메모리 공간을 할당하고 값을 복사해 하나 더 생성한다.(주소값도 새로 생긴다.)   
    
 얕은 복사를 하게 되면 주소값만을 복사하기 때문에 복사한 변수를 사용하면 원본 변수의 값도 변경된다.   
 깊은 복사를 하게 되면 새로운 주소에 값이 생성되므로 원본과는 별개로 사용할 수 있다.   
    
 memcpy()는 Array 깊은 복사에,   
-copy()는 Array, vector 깊은 복사에 사용된다.
+copy()는 Array, vector 깊은 복사에 사용된다.   
+<br>
 
-### memcpy( ) - 깊은복사 - Array
+### 2.2 memcpy( ) - 깊은복사 - Array
 memcpy()는 어떤 변수의 메모리에 있는 값들을 다른 변수의 **"특정 메모리값"**으로 복사한다.
 복사 후에도 기존 배열의 값이 수정되지 않은 상태값이 필요할 때 사용한다.
 ```c++
@@ -95,15 +112,17 @@ if(is_trivial<vector<int>>()){
     // memcpy()는 array에만 쓸 수 있다.
 }
 ```
+<br>
 
-#### memcpy( ) 사용 시 주의할 점
+**memcpy( ) 사용 시 주의할 점**   
 memcpy()를 쓸 때 복사하는 배열(src)과 복사되는 대상(dest) 배열의 메모리가 겹치면 UB 에러가 발생한다.   
 ```c++
 int a[8];
 memcpy(&a[1], a, sizeof(int) * 7); // 같은 배열에 복사를 선언. UB 에러 발생!!
 ```
+<br>
 
-### copy( ) - 깊은복사 - Array, Vector
+### 2.3 copy( ) - 깊은복사 - Array, Vector
 memcpy()와 같은 동작을 Array, Vector 모두에 수행가능한 함수
 ```c++
 copy(InputIterator first, InputIterator last, OutputIterator result);
@@ -114,7 +133,8 @@ input vector과 output vector의 크기를 동일하게 맞추고 집어넣어�
    
 배열의 크기는 컴파일 시간에 상수여야 하므로 const int로 선언 후 배열 선언을 하는 것이 옳다. 그렇지 않을 경우 모든 C++ 컴파일러에서 제대로 컴파일 되지 않을 수 있음.
 
-<br>
+<br><br>
+
 
 ## 3. sort( )
 배열 등 컨테이너들의 요소를 정렬하는 함수. O(logn)의 시간복잡도.   
@@ -132,8 +152,9 @@ int v[3] = {3,2,1};
 sort(v.begin(), v.end()); // 3,2,1 -> 1,2,3
 sort(v.begin(), v.end(), greater<int>()) // 1,2,3 -> 3,2,1
 ```
+<br>
 
-### 커스텀 비교함수 만들기 CMP
+### 3.1 커스텀 비교함수 만들기 CMP
 pair로 이루어진 벡터의 경우 기본으로 first, second 순으로 오름차순 정렬되지만   
 first를 내림차순, second를 오름차순으로 정렬하고 싶다면? cmp를 만들어 투입하면 된다.
 ```c++
@@ -199,8 +220,9 @@ vector<int> v = {1, 2, 3, 4, 5};
 v.erase(v.begin() + 1, v.begin() + 4);  // 인덱스 1부터 3까지 삭제
 // v == {1,5}
 ```
+<br>
 
-### erase()와 unique() 조합
+### 5.1 erase()와 unique() 조합
 unique는 중복된 연속 요소를 제거하고 새로운 끝의 이터레이터를 반환함.
 erase는 주어진 처음, 끝 이터레이터를 모두 포함한 범위를 지움
 
@@ -208,8 +230,9 @@ erase는 주어진 처음, 끝 이터레이터를 모두 포함한 범위를 지
 vector<int> v = {1, 2, 2, 3, 3, 4};
 v.erase( unique(v.begin(), v.end()),  v.end());
 ```
+<br>
 
-### sort()와 unique() 조합
+### 5.2 sort()와 unique() 조합
 uinque()는 중복된 연속 요소만 제거하므로 정렬후 사용해야 합니다 ,, ,,
 
 <br>
@@ -302,12 +325,54 @@ C++에서 포인터나 이터레이터의 뺄셈 연산은 메모리 주소차�
 <br>
 
 ## 11. 값에 의한 호출, 참조에 의한 호출
+함수에 값을 전달할 때는 값에 의한 호출, 참조에 의한 호출 두가지 방식으로 전달할 수 있다.
+### 11.1 매개변수
+```c++
+int add(int n1, int n2){ // -> 매개변수
+	return n1 + n2;
+}
+```
 
-### 매개변수
+매개변수(Parameter)는 함수에 전달되는 값이자 함수 괄호 안에 선언되는 값을 말한다.
 
-### 값에 의한 호출, Call by value
+<br>
 
-### 참조에 의한 호출, Call by Reference
+### 11.2 값에 의한 호출, Call by value
+값에 의한 호출은 매개변수로 전달되는 변수를 함수 내부에서 복사해서 사용하는 방식이다.   
+실제 변수와는 다른 주소에 할당되어 함수 내부에서만 사용되기 때문에   
+실제 변수와 매개변수로 전달되어 사용된 변수는 다른 주솟값을 지니며, 원본 값을 건드리지 않는다.
 
+<br>
+
+### 11.3 참조에 의한 호출, Call by Reference
+참조에 의한 호출 방식은 매개변수에 변수의 '주소'를 전달하는 방법이다.   
+함수 내부에서 전달된 변수 그자체를 사용하므로 해당 매개변수를 변경하게 되면 실제 원본 변수에도 반영이 된다.
+   
+```c++
+int add(int &n1, int n2){
+	n1+=10;
+	cout << "add().n1: " << n1 << endl;
+	return n1 + n2;
+}
+int main(){
+	int a = 1;
+	int b = 2;
+	cout << "a : " << a << endl;
+	
+	int sum = add(a,b);
+	cout << "add(a,b) : " << sum << endl;
+	
+	cout << "a : " << a << endl;
+	
+	return 0;
+}
+```
+<br>
+
+### 11.4 Call by Reference로 넘겨야 하는 경우
+
+double, int와 같은 primitive한 타입들은 매개변수로 넘길 때 복사에 드는 코스트가 많지 않으므로 값에의한 호출로 넘기는 것이 좋다.   
+   
+struct나 요소가 많은 배열은 차지하는 용량이 많기 때문에 복사에 드는 코스트가 많아 참조로 매개변수에 넘기는 것이 효율적이다.   
 
 <br>
