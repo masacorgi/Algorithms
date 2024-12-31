@@ -36,9 +36,9 @@
 &emsp;&emsp;7. accumulate()   
 &emsp;&emsp;8. max_element()   
 &emsp;&emsp;9. min_element()
-&emsp;&emsp;10. 메모리 주소끼리의 뺄셈
-&emsp;&emsp;11. 값에 의한 호출, 참조에 의한 호출
+&emsp;&emsp;10. 메모리 주소끼리의 뺄셈   
+&emsp;&emsp;11. 값에 의한 호출, 참조에 의한 호출   
 &emsp;[4. Data Structures](./4_Data_Structures)   
-&emsp;&emsp; 현재 진 행 중 ...
+&emsp;&emsp; 현재 진 행 중 ...   
 &emsp;5_Array_Modifying (not yet)   
 &emsp;6_Recursion_Math (not yet)   
