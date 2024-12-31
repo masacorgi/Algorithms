@@ -27,7 +27,18 @@
 &emsp;&emsp;5. 프로세스 메모리 구조와 정적/동적할당   
 &emsp;&emsp;6. Iterator   
 &emsp;[3_Methods](./3_Methods)   
-&emsp;&emsp; 현재 진 행 중 ...   
-&emsp;4_Datastructures (not yet)   
+&emsp;&emsp;1.fill(), memset()   
+&emsp;&emsp;2. memcpy(), copy()   
+&emsp;&emsp;3. sort()   
+&emsp;&emsp;4. stable_sort()   
+&emsp;&emsp;5. unique()   
+&emsp;&emsp;6. lower_bound(), upper_bound()   
+&emsp;&emsp;7. accumulate()   
+&emsp;&emsp;8. max_element()   
+&emsp;&emsp;9. min_element()
+&emsp;&emsp;10. 메모리 주소끼리의 뺄셈
+&emsp;&emsp;11. 값에 의한 호출, 참조에 의한 호출
+&emsp;[4. Data Structures](./4_Data_Structures)   
+&emsp;&emsp; 현재 진 행 중 ...
 &emsp;5_Array_Modifying (not yet)   
 &emsp;6_Recursion_Math (not yet)   
