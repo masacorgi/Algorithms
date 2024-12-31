@@ -33,7 +33,7 @@ Directories
     - 3.10 front()
     - 3.11 back()
     - 3.12 clear()
-  - 4. Array vs List
+  - 4.Array vs List
 
 - [4_2 Map & Set (Not yet)](./4_2_Map_&_Set/)
   - 1.Map
