@@ -1,11 +1,39 @@
-  - [9. Stack](#9-stack)
-    - [9.1. push(value)](#91-pushvalue)
-    - [9.2 pop()](#92-pop)
-    - [9.3 top()](#93-top)
-    - [9.4 size()](#94-size)
-  - [10. Queue](#10-queue)
-    - [10.1 push(value)](#101-pushvalue)
-    - [10.2 pop()](#102-pop)
-    - [10.3 size()](#103-size)
-    - [10.4 front()](#104-front)
-  - [11. Deque](#11-deque)
+  # Basic C++, Data Structures, Stack & Queue & Deque
+
+  알고리즘에 사용되는 C++의 자료구조 중 Stack, Queue, Deque를 공부하고 정리한 자료입니다.
+
+  index
+  
+- [Basic C++, Data Structures, Stack \& Queue \& Deque](#basic-c-data-structures-stack--queue--deque)
+  - [1. Stack](#1-stack)
+    - [1.1. push(value)](#11-pushvalue)
+    - [1.2 pop()](#12-pop)
+    - [1.3 top()](#13-top)
+    - [1.4 size()](#14-size)
+  - [2.  Queue](#2--queue)
+    - [2.1 push(value)](#21-pushvalue)
+    - [2.2 pop()](#22-pop)
+    - [2.3 size()](#23-size)
+    - [2.4 front()](#24-front)
+  - [3.  Deque](#3--deque)
+
+## 1. Stack
+### 1.1. push(value)
+### 1.2 pop()
+### 1.3 top()
+### 1.4 size()
+
+<br>
+
+## 2.  Queue
+### 2.1 push(value)
+### 2.2 pop()
+### 2.3 size()
+### 2.4 front()
+
+<br>
+
+## 3.  Deque
+
+
+<br>
