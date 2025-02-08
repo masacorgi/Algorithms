@@ -28,7 +28,7 @@ void make_combination(int start, vector<int> v){
 }
 
 int main(){
-	cin >> n >> m;
+	cin >> n >> m; //문제 입력 단 
 	for(int i=0; i<n; i++){
 		for(int j=0; j<n; j++){
 			cin >> a[i][j];
